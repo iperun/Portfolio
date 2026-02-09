@@ -1,6 +1,4 @@
-content.js
-main.js
-img-original-size
-content.css
-email.css
-style.css
+node_modules/
+.DS_Store
+.env
+*.log
