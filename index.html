@@ -4,21 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="dark">
-  <title>Ivan Perun | Web Developer & Designer</title>
-  <meta name="description" content="Ivan Perun is a web developer & designer based in Florida, crafting digital experiences where design and engineering converge.">
+  <title>Perun Design | Web Developer & Designer</title>
+  <meta name="description" content="Perun Design — Web developer & designer based in Massachusetts, crafting digital experiences where design and engineering converge.">
   <meta name="author" content="Ivan Perun">
   <link rel="canonical" href="https://perundesign.com"/>
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Ivan Perun | Web Developer & Designer">
+  <meta property="og:title" content="Perun Design | Web Developer & Designer">
   <meta property="og:description" content="Crafting digital experiences where design and engineering converge.">
   <meta property="og:url" content="https://perundesign.com/">
-  <meta property="og:site_name" content="Ivan Perun">
+  <meta property="og:site_name" content="Perun Design">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Ivan Perun | Web Developer & Designer">
+  <meta name="twitter:title" content="Perun Design | Web Developer & Designer">
   <meta name="twitter:description" content="Crafting digital experiences where design and engineering converge.">
 
   <!-- Structured Data -->
@@ -35,7 +35,8 @@
     ],
     "address": {
       "@type": "PostalAddress",
-      "addressRegion": "FL",
+      "addressLocality": "Canton",
+      "addressRegion": "MA",
       "addressCountry": "US"
     }
   }
@@ -128,8 +129,9 @@
       height: 200%;
       z-index: 9999;
       pointer-events: none;
-      opacity: 0.035;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.06;
+      background-repeat: repeat;
+      background-size: 256px 256px;
       animation: grain 0.5s steps(6) infinite;
       will-change: transform;
     }
@@ -144,11 +146,16 @@
     }
 
     /* =========================================
-       Page Wrapper
+       Page Wrapper — starts invisible
        ========================================= */
     .page-wrap {
+      visibility: hidden;
       opacity: 0;
-      animation: page-in 1s var(--ease-out) 0.2s both;
+    }
+
+    .page-wrap.is-visible {
+      visibility: visible;
+      animation: page-in 0.8s var(--ease-out) both;
     }
 
     @keyframes page-in {
@@ -169,7 +176,12 @@
       align-items: center;
       justify-content: space-between;
       padding: 1.75rem clamp(1.5rem, 4vw, 3rem);
-      animation: reveal 0.8s var(--ease-out) 0.4s both;
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    .page-wrap.is-visible .navbar {
+      animation: reveal 0.8s var(--ease-out) 0.15s both;
     }
 
     .nav-name {
@@ -180,45 +192,17 @@
     }
 
     .nav-cta {
-      font-size: 0.875rem;
+      font-size: 0.8rem;
       font-weight: 500;
-      position: relative;
-      padding-bottom: 0.2em;
+      letter-spacing: 0.03em;
+      padding: 0.55em 1.2em;
+      border: 1px solid var(--text-dim);
+      border-radius: 2px;
+      transition: border-color 0.4s ease, color 0.4s ease;
     }
 
-    .nav-cta::before,
-    .nav-cta::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: var(--text);
-    }
-
-    .nav-cta::before {
-      transform-origin: left;
-      transform: scaleX(1);
-      transition: transform 0.6s var(--ease-smooth) 0.2s;
-    }
-
-    .nav-cta::after {
-      transform-origin: right;
-      transform: scaleX(0);
-      transition: transform 0.6s var(--ease-smooth) 0s;
-    }
-
-    .nav-cta:hover::before {
-      transform-origin: right;
-      transform: scaleX(0);
-      transition-delay: 0s;
-    }
-
-    .nav-cta:hover::after {
-      transform-origin: left;
-      transform: scaleX(1);
-      transition-delay: 0.2s;
+    .nav-cta:hover {
+      border-color: var(--text);
     }
 
     /* =========================================
@@ -228,16 +212,16 @@
       min-height: 100vh;
       min-height: 100dvh;
       display: grid;
-      grid-template-rows: 1fr auto;
+      grid-template-rows: auto 1fr auto;
       padding: 0 clamp(1.5rem, 4vw, 3rem);
     }
 
     .hero-content {
       display: grid;
-      grid-template-columns: 1fr 0.4fr;
+      grid-template-columns: 1fr 0.55fr;
       gap: clamp(3rem, 6vw, 6rem);
-      align-items: end;
-      padding-top: 8rem;
+      align-items: start;
+      padding-top: 7rem;
       padding-bottom: 2rem;
     }
 
@@ -249,31 +233,39 @@
     }
 
     .hero-statement {
-      font-size: clamp(1.75rem, 3.5vw, 3rem);
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
       font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      animation: reveal 0.8s var(--ease-out) 0.6s both;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      font-style: italic;
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    .page-wrap.is-visible .hero-statement {
+      animation: reveal 0.8s var(--ease-out) 0.3s both;
     }
 
     .hero-statement em {
-      font-size: 1.05em;
+      font-size: 1.02em;
     }
 
     .hero-body {
-      font-size: clamp(1rem, 2vw, 1.35rem);
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
       font-weight: 400;
       line-height: 1.55;
       color: var(--text-muted);
-      max-width: 56ch;
+      max-width: 52ch;
+      opacity: 0;
+      transform: translateY(15px);
     }
 
-    .hero-body:nth-of-type(1) {
-      animation: reveal 0.8s var(--ease-out) 0.8s both;
+    .page-wrap.is-visible .hero-body:nth-of-type(1) {
+      animation: reveal 0.8s var(--ease-out) 0.5s both;
     }
 
-    .hero-body:nth-of-type(2) {
-      animation: reveal 0.8s var(--ease-out) 1s both;
+    .page-wrap.is-visible .hero-body:nth-of-type(2) {
+      animation: reveal 0.8s var(--ease-out) 0.7s both;
     }
 
     .hero-body em {
@@ -287,7 +279,12 @@
       gap: 2.5rem;
       border-left: 1px solid var(--border);
       padding-left: clamp(1.5rem, 3vw, 2.5rem);
-      animation: reveal 0.8s var(--ease-out) 0.9s both;
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    .page-wrap.is-visible .hero-aside {
+      animation: reveal 0.8s var(--ease-out) 0.6s both;
     }
 
     .hero-group {
@@ -300,8 +297,8 @@
       font-family: var(--mono);
       font-size: 0.7rem;
       font-weight: 500;
-      text-transform: lowercase;
-      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
       color: var(--text-dim);
       padding-bottom: 0.5rem;
       border-bottom: 1px solid var(--border);
@@ -374,7 +371,12 @@
       justify-content: space-between;
       padding: 1.25rem 0;
       border-top: 1px solid var(--border);
-      animation: reveal 0.8s var(--ease-out) 1.2s both;
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    .page-wrap.is-visible .hero-bottom {
+      animation: reveal 0.8s var(--ease-out) 0.9s both;
     }
 
     .bottom-group {
@@ -434,7 +436,7 @@
     @keyframes reveal {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(15px);
       }
       to {
         opacity: 1;
@@ -448,14 +450,16 @@
     @media (prefers-reduced-motion: reduce) {
       .grain-overlay { animation: none; }
       .page-wrap,
-      .navbar,
-      .hero-statement,
-      .hero-body,
-      .hero-aside,
-      .hero-bottom {
-        animation: none;
-        opacity: 1;
-        transform: none;
+      .page-wrap.is-visible,
+      .page-wrap.is-visible .navbar,
+      .page-wrap.is-visible .hero-statement,
+      .page-wrap.is-visible .hero-body,
+      .page-wrap.is-visible .hero-aside,
+      .page-wrap.is-visible .hero-bottom {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
       }
       .status-dot { animation: none; opacity: 1; }
     }
@@ -499,7 +503,7 @@
       }
 
       .hero-statement {
-        font-size: 1.5rem;
+        font-size: 1.35rem;
       }
 
       .hero-body {
@@ -528,11 +532,11 @@
   <!-- Grain Overlay -->
   <div class="grain-overlay" aria-hidden="true"></div>
 
-  <div class="page-wrap">
+  <div class="page-wrap" id="page">
 
     <!-- Navigation -->
     <nav class="navbar">
-      <a href="/" class="nav-name">Ivan Perun</a>
+      <a href="/" class="nav-name">Perun Design</a>
       <a href="mailto:peruni101@gmail.com" class="nav-cta">Get in touch &rarr;</a>
     </nav>
 
@@ -547,7 +551,7 @@
             with <em>intention</em>.
           </h1>
           <p class="hero-body">
-            I'm a web developer &amp; <em>designer</em> based in Florida, building at the intersection of thoughtful <em>design</em> and precise <em>engineering</em>.
+            I'm a web developer &amp; <em>designer</em> based in Massachusetts, building at the intersection of thoughtful <em>design</em> and precise <em>engineering</em>.
           </p>
           <p class="hero-body">
             Clean architecture, purposeful interfaces, and work that respects both the user and the <em>craft</em>.
@@ -557,7 +561,7 @@
         <!-- Aside Column -->
         <aside class="hero-aside">
           <div class="hero-group">
-            <p class="eyebrow">services</p>
+            <p class="eyebrow">Services</p>
             <ul class="hero-list">
               <li class="hero-list-item"><span class="num">(01)</span> Web Development</li>
               <li class="hero-list-item"><span class="num">(02)</span> UI/UX Design</li>
@@ -567,7 +571,7 @@
             </ul>
           </div>
           <div class="hero-group">
-            <p class="eyebrow">connect</p>
+            <p class="eyebrow">Connect</p>
             <ul class="hero-list">
               <li>
                 <a href="https://www.linkedin.com/in/ivan-perun/" target="_blank" rel="noopener" class="hero-link">
@@ -590,6 +594,9 @@
 
       </div>
 
+      <!-- Spacer for visual breathing room -->
+      <div></div>
+
       <!-- Bottom Bar -->
       <div class="hero-bottom">
         <div class="bottom-group">
@@ -600,7 +607,7 @@
           <span class="status-dot"></span>
           available for projects
         </div>
-        <p class="bottom-coords">27.9659&deg; N, 82.8001&deg; W</p>
+        <p class="bottom-coords">42.1584&deg; N, 71.1448&deg; W</p>
       </div>
 
     </section>
@@ -609,6 +616,33 @@
 
   <script>
     (function() {
+      /* ---- Generate grain noise texture via canvas ---- */
+      var grainCanvas = document.createElement('canvas');
+      grainCanvas.width = 256;
+      grainCanvas.height = 256;
+      var ctx = grainCanvas.getContext('2d');
+      var imageData = ctx.createImageData(256, 256);
+      var pixels = imageData.data;
+      for (var i = 0; i < pixels.length; i += 4) {
+        var v = (Math.random() * 255) | 0;
+        pixels[i] = v;
+        pixels[i + 1] = v;
+        pixels[i + 2] = v;
+        pixels[i + 3] = 255;
+      }
+      ctx.putImageData(imageData, 0, 0);
+      var grainEl = document.querySelector('.grain-overlay');
+      if (grainEl) {
+        grainEl.style.backgroundImage = 'url(' + grainCanvas.toDataURL('image/png') + ')';
+      }
+
+      /* ---- Page reveal after brief blank screen ---- */
+      var page = document.getElementById('page');
+      setTimeout(function() {
+        if (page) page.classList.add('is-visible');
+      }, 400);
+
+      /* ---- Live clock ---- */
       function updateClock() {
         var now = new Date();
         var opts = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'America/New_York' };
