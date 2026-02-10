@@ -750,7 +750,9 @@ em {
   .navbar {
     padding: 1.25rem 1.25rem;
   }
-
+  .footer_group_right {
+    text-align: left;
+  }
   .footer_inner {
     flex-direction: column;
     align-items: flex-start;
