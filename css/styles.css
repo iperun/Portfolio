@@ -744,6 +744,9 @@ em {
 }
 
 @media (max-width: 600px) {
+  .grain-overlay {
+    display: none;
+  }
   .navbar {
     padding: 1.25rem 1.25rem;
   }
