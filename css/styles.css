@@ -703,8 +703,8 @@ em {
 }
   .header_content {
     grid-template-columns: 1fr;
-    padding: 8rem var(--edge-padding) 4rem;
-    gap: 4rem;
+    padding: 8rem var(--edge-padding) 2rem;
+    gap: 2rem;
   }
 
   .header_headline {
@@ -713,7 +713,6 @@ em {
 
   .header_col {
     justify-self: start;
-    padding-left: 0.75rem;
     min-width: auto;
   }
 
@@ -732,7 +731,7 @@ em {
   }
 
   .canvas_pill_wrap {
-    padding: 0 var(--edge-padding) 5rem;
+    padding: 0 var(--edge-padding) 2.5rem;
   }
 
   .marquee_wrap {
