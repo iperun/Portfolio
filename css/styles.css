@@ -124,10 +124,11 @@ em {
    ========================================= */
 .grain-overlay {
   position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  top: -50vh;
+  left: -50vw;
+  width: 200vw;
+  height: 200vh;
+  height: 200dvh; /* Covers dynamic viewport on iOS Safari (address bar show/hide) */
   z-index: 9999;
   pointer-events: none;
   opacity: 0.06;
@@ -135,15 +136,17 @@ em {
   background-size: 256px 256px;
   animation: grain 0.5s steps(6) infinite;
   will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 @keyframes grain {
-  0%, 100% { transform: translate(0, 0); }
-  17% { transform: translate(-5%, -10%); }
-  33% { transform: translate(3%, -15%); }
-  50% { transform: translate(12%, 9%); }
-  67% { transform: translate(9%, 4%); }
-  83% { transform: translate(-1%, 7%); }
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  17% { transform: translate3d(-5%, -10%, 0); }
+  33% { transform: translate3d(3%, -15%, 0); }
+  50% { transform: translate3d(12%, 9%, 0); }
+  67% { transform: translate3d(9%, 4%, 0); }
+  83% { transform: translate3d(-1%, 7%, 0); }
 }
 
 /* =========================================
@@ -182,6 +185,7 @@ em {
   align-items: center;
   justify-content: space-between;
   padding: 1.75rem var(--edge-padding);
+  background: #0a0a0abd;
 }
 
 .nav-name {
@@ -384,7 +388,6 @@ em {
   letter-spacing: 0.1em;
   line-height: 1;
   color: var(--text);
-  transform: translateY(-20px);
 }
 
 /* =========================================
@@ -695,6 +698,9 @@ em {
 }
 
 @media (max-width: 768px) {
+  span.play_icon {
+    display: none;
+}
   .header_content {
     grid-template-columns: 1fr;
     padding: 8rem var(--edge-padding) 4rem;
