@@ -216,6 +216,8 @@
     const tl = gsap.timeline({
       onComplete: function() {
         page.classList.add('is-visible');
+        document.body.style.overflowX = 'hidden';
+        document.body.style.overflowY = 'auto';
         if (window.lenis) window.lenis.resize();
       }
     });
