@@ -46,613 +46,165 @@
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
 
-  <style>
-    /* =========================================
-       Custom Properties
-       ========================================= */
-    :root {
-      --bg: #0a0a0a;
-      --text: #e5e0da;
-      --text-muted: #706b65;
-      --text-dim: #4a4641;
-      --border: #1f1d1b;
-      --accent-green: #4a9e6a;
-      --sans: 'Satoshi', -apple-system, sans-serif;
-      --serif: 'Instrument Serif', Georgia, serif;
-      --mono: 'IBM Plex Mono', monospace;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-smooth: cubic-bezier(0.625, 0.05, 0, 1);
-    }
-
-    /* =========================================
-       Reset & Base
-       ========================================= */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      height: 100%;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    body {
-      font-family: var(--sans);
-      font-weight: 400;
-      color: var(--text);
-      background: var(--bg);
-      background-image: radial-gradient(
-        ellipse at 70% 50%,
-        rgba(30, 25, 20, 0.5) 0%,
-        transparent 70%
-      );
-      min-height: 100%;
-      line-height: 1.5;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    ul { list-style: none; }
-
-    ::selection {
-      background: rgba(229, 224, 218, 0.15);
-      color: var(--text);
-    }
-
-    /* =========================================
-       Typography
-       ========================================= */
-    em {
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 400;
-    }
-
-    /* =========================================
-       Grain Overlay
-       ========================================= */
-    .grain-overlay {
-      position: fixed;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      z-index: 9999;
-      pointer-events: none;
-      opacity: 0.06;
-      background-repeat: repeat;
-      background-size: 256px 256px;
-      animation: grain 0.5s steps(6) infinite;
-      will-change: transform;
-    }
-
-    @keyframes grain {
-      0%, 100% { transform: translate(0, 0); }
-      17% { transform: translate(-5%, -10%); }
-      33% { transform: translate(3%, -15%); }
-      50% { transform: translate(12%, 9%); }
-      67% { transform: translate(9%, 4%); }
-      83% { transform: translate(-1%, 7%); }
-    }
-
-    /* =========================================
-       Page Wrapper — starts invisible
-       ========================================= */
-    .page-wrap {
-      visibility: hidden;
-      opacity: 0;
-    }
-
-    .page-wrap.is-visible {
-      visibility: visible;
-      animation: page-in 0.8s var(--ease-out) both;
-    }
-
-    @keyframes page-in {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* =========================================
-       Navigation
-       ========================================= */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.75rem clamp(1.5rem, 4vw, 3rem);
-      opacity: 0;
-      transform: translateY(15px);
-    }
-
-    .page-wrap.is-visible .navbar {
-      animation: reveal 0.8s var(--ease-out) 0.15s both;
-    }
-
-    .nav-name {
-      font-weight: 700;
-      font-size: 0.875rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .nav-cta {
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      padding: 0.55em 1.2em;
-      border: 1px solid var(--text-dim);
-      border-radius: 2px;
-      transition: border-color 0.4s ease, color 0.4s ease;
-    }
-
-    .nav-cta:hover {
-      border-color: var(--text);
-    }
-
-    /* =========================================
-       Hero
-       ========================================= */
-    .hero {
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      padding: 0 clamp(1.5rem, 4vw, 3rem);
-    }
-
-    .hero-content {
-      display: grid;
-      grid-template-columns: 1fr 0.55fr;
-      gap: clamp(3rem, 6vw, 6rem);
-      align-items: start;
-      padding-top: 7rem;
-      padding-bottom: 2rem;
-    }
-
-    /* ---- Hero Text ---- */
-    .hero-text {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .hero-statement {
-      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
-      font-weight: 700;
-      line-height: 1.3;
-      letter-spacing: -0.01em;
-      font-style: italic;
-      opacity: 0;
-      transform: translateY(15px);
-    }
-
-    .page-wrap.is-visible .hero-statement {
-      animation: reveal 0.8s var(--ease-out) 0.3s both;
-    }
-
-    .hero-statement em {
-      font-size: 1.02em;
-    }
-
-    .hero-body {
-      font-size: clamp(1rem, 1.8vw, 1.25rem);
-      font-weight: 400;
-      line-height: 1.55;
-      color: var(--text-muted);
-      max-width: 52ch;
-      opacity: 0;
-      transform: translateY(15px);
-    }
-
-    .page-wrap.is-visible .hero-body:nth-of-type(1) {
-      animation: reveal 0.8s var(--ease-out) 0.5s both;
-    }
-
-    .page-wrap.is-visible .hero-body:nth-of-type(2) {
-      animation: reveal 0.8s var(--ease-out) 0.7s both;
-    }
-
-    .hero-body em {
-      color: var(--text);
-    }
-
-    /* ---- Hero Aside ---- */
-    .hero-aside {
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-      border-left: 1px solid var(--border);
-      padding-left: clamp(1.5rem, 3vw, 2.5rem);
-      opacity: 0;
-      transform: translateY(15px);
-    }
-
-    .page-wrap.is-visible .hero-aside {
-      animation: reveal 0.8s var(--ease-out) 0.6s both;
-    }
-
-    .hero-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .eyebrow {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-dim);
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .hero-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .hero-list-item {
-      font-size: 0.95rem;
-      font-weight: 400;
-      color: var(--text-muted);
-      display: flex;
-      align-items: baseline;
-      gap: 0.75rem;
-    }
-
-    .hero-list-item .num {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--text-dim);
-    }
-
-    .hero-link {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--text);
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .hero-link::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: var(--text-dim);
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.4s var(--ease-smooth);
-    }
-
-    .hero-link:hover::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-
-    .hero-link .arrow {
-      font-size: 0.75em;
-      transition: transform 0.3s ease;
-    }
-
-    .hero-link:hover .arrow {
-      transform: translate(2px, -2px);
-    }
-
-    /* =========================================
-       Hero Bottom Bar
-       ========================================= */
-    .hero-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.25rem 0;
-      border-top: 1px solid var(--border);
-      opacity: 0;
-      transform: translateY(15px);
-    }
-
-    .page-wrap.is-visible .hero-bottom {
-      animation: reveal 0.8s var(--ease-out) 0.9s both;
-    }
-
-    .bottom-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-    }
-
-    .bottom-time {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      letter-spacing: 0.02em;
-    }
-
-    .bottom-timezone {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--text-dim);
-      letter-spacing: 0.02em;
-    }
-
-    .bottom-status {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      letter-spacing: 0.02em;
-    }
-
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent-green);
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    .bottom-coords {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      text-align: right;
-      letter-spacing: 0.02em;
-    }
-
-    /* =========================================
-       Reveal Animation
-       ========================================= */
-    @keyframes reveal {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* =========================================
-       Reduced Motion
-       ========================================= */
-    @media (prefers-reduced-motion: reduce) {
-      .grain-overlay { animation: none; }
-      .page-wrap,
-      .page-wrap.is-visible,
-      .page-wrap.is-visible .navbar,
-      .page-wrap.is-visible .hero-statement,
-      .page-wrap.is-visible .hero-body,
-      .page-wrap.is-visible .hero-aside,
-      .page-wrap.is-visible .hero-bottom {
-        animation: none !important;
-        opacity: 1 !important;
-        transform: none !important;
-        visibility: visible !important;
-      }
-      .status-dot { animation: none; opacity: 1; }
-    }
-
-    /* =========================================
-       Responsive — Tablet
-       ========================================= */
-    @media (max-width: 900px) {
-      .hero-content {
-        grid-template-columns: 1fr;
-        align-items: start;
-        padding-top: 7rem;
-      }
-
-      .hero-aside {
-        border-left: none;
-        padding-left: 0;
-        border-top: 1px solid var(--border);
-        padding-top: 2rem;
-        flex-direction: row;
-        gap: 3rem;
-      }
-
-      .hero-group { flex: 1; }
-    }
-
-    /* =========================================
-       Responsive — Mobile
-       ========================================= */
-    @media (max-width: 600px) {
-      .navbar {
-        padding: 1.25rem 1.25rem;
-      }
-
-      .hero {
-        padding: 0 1.25rem;
-      }
-
-      .hero-content {
-        padding-top: 6rem;
-      }
-
-      .hero-statement {
-        font-size: 1.35rem;
-      }
-
-      .hero-body {
-        font-size: 0.95rem;
-      }
-
-      .hero-aside {
-        flex-direction: column;
-        gap: 2rem;
-      }
-
-      .hero-bottom {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: flex-start;
-      }
-
-      .bottom-coords {
-        text-align: left;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" aria-hidden="true">
+    <p></p>
+  </div>
 
   <!-- Grain Overlay -->
   <div class="grain-overlay" aria-hidden="true"></div>
 
-  <div class="page-wrap" id="page">
-
-    <!-- Navigation -->
-    <nav class="navbar">
-      <a href="/" class="nav-name">Perun Design</a>
-      <a href="mailto:peruni101@gmail.com" class="nav-cta">Get in touch &rarr;</a>
-    </nav>
-
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-content">
-
-        <!-- Text Column -->
-        <div class="hero-text">
-          <h1 class="hero-statement">
-            I craft digital experiences<br>
-            with <em>intention</em>.
-          </h1>
-          <p class="hero-body">
-            I'm a web developer &amp; <em>designer</em> based in Massachusetts, building at the intersection of thoughtful <em>design</em> and precise <em>engineering</em>.
-          </p>
-          <p class="hero-body">
-            Clean architecture, purposeful interfaces, and work that respects both the user and the <em>craft</em>.
-          </p>
-        </div>
-
-        <!-- Aside Column -->
-        <aside class="hero-aside">
-          <div class="hero-group">
-            <p class="eyebrow">Services</p>
-            <ul class="hero-list">
-              <li class="hero-list-item"><span class="num">(01)</span> Web Development</li>
-              <li class="hero-list-item"><span class="num">(02)</span> UI/UX Design</li>
-              <li class="hero-list-item"><span class="num">(03)</span> Full-Stack Engineering</li>
-              <li class="hero-list-item"><span class="num">(04)</span> E-Commerce</li>
-              <li class="hero-list-item"><span class="num">(05)</span> Performance &amp; SEO</li>
-            </ul>
-          </div>
-          <div class="hero-group">
-            <p class="eyebrow">Connect</p>
-            <ul class="hero-list">
-              <li>
-                <a href="https://www.linkedin.com/in/ivan-perun/" target="_blank" rel="noopener" class="hero-link">
-                  LinkedIn <span class="arrow">&nearr;</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/iperun" target="_blank" rel="noopener" class="hero-link">
-                  GitHub <span class="arrow">&nearr;</span>
-                </a>
-              </li>
-              <li>
-                <a href="mailto:peruni101@gmail.com" class="hero-link">
-                  Email <span class="arrow">&nearr;</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </aside>
-
-      </div>
-
-      <!-- Spacer for visual breathing room -->
-      <div></div>
-
-      <!-- Bottom Bar -->
-      <div class="hero-bottom">
-        <div class="bottom-group">
-          <p class="bottom-time" id="clock"></p>
-          <p class="bottom-timezone">eastern standard time</p>
-        </div>
-        <div class="bottom-status">
-          <span class="status-dot"></span>
-          available for projects
-        </div>
-        <p class="bottom-coords">42.1584&deg; N, 71.1448&deg; W</p>
-      </div>
-
-    </section>
-
+  <!-- Showreel Lightbox -->
+  <div class="showreel_lightbox" data-showreel-wrap aria-hidden="true">
+    <div class="showreel_bg" data-showreel-close></div>
+    <div class="showreel_inner">
+      <video class="showreel_video" playsinline muted controls>
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+      </video>
+      <button type="button" class="showreel_close" aria-label="Close">Close</button>
+    </div>
   </div>
 
-  <script>
-    (function() {
-      /* ---- Generate grain noise texture via canvas ---- */
-      var grainCanvas = document.createElement('canvas');
-      grainCanvas.width = 256;
-      grainCanvas.height = 256;
-      var ctx = grainCanvas.getContext('2d');
-      var imageData = ctx.createImageData(256, 256);
-      var pixels = imageData.data;
-      for (var i = 0; i < pixels.length; i += 4) {
-        var v = (Math.random() * 255) | 0;
-        pixels[i] = v;
-        pixels[i + 1] = v;
-        pixels[i + 2] = v;
-        pixels[i + 3] = 255;
-      }
-      ctx.putImageData(imageData, 0, 0);
-      var grainEl = document.querySelector('.grain-overlay');
-      if (grainEl) {
-        grainEl.style.backgroundImage = 'url(' + grainCanvas.toDataURL('image/png') + ')';
-      }
+  <div class="page-wrap" id="page">
+    <main>
 
-      /* ---- Page reveal after brief blank screen ---- */
-      var page = document.getElementById('page');
-      setTimeout(function() {
-        if (page) page.classList.add('is-visible');
-      }, 400);
+      <!-- Navigation -->
+      <nav class="navbar">
+        <a href="/" class="nav-name">Perun Design</a>
+        <a href="mailto:peruni101@gmail.com?subject=Portfolio%20Inquiry%20—%20Perun%20Design" class="nav-cta nav-cta_pill" data-cursor="Email">Work with me →</a>
+      </nav>
 
-      /* ---- Live clock ---- */
-      function updateClock() {
-        var now = new Date();
-        var opts = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'America/New_York' };
-        var el = document.getElementById('clock');
-        if (el) el.textContent = now.toLocaleTimeString('en-US', opts).toLowerCase();
-      }
-      updateClock();
-      setInterval(updateClock, 1000);
-    })();
-  </script>
+      <!-- Header Content -->
+      <section class="header_content" data-hero-wrap>
+        <div class="header_main">
+          <h1 class="header_headline">Creative Design & Development</h1>
+          <p class="header_body">
+            Hello, I'm Ivan Perun - an independent creative developer specializing in the intersection of design and code. I bridge the gap between complex brand concepts and high-performance, accessible web deployment.
+          </p>
+        </div>
+        <div class="header_col header_col--services">
+          <p class="side_block_title">services</p>
+          <div class="side_block_line"></div>
+          <ul class="side_block_list">
+            <li><a href="#" class="side_block_item" data-cursor="View">(01) Web Design</a></li>
+            <li><a href="#" class="side_block_item" data-cursor="View">(02) Branding</a></li>
+            <li><a href="#" class="side_block_item" data-cursor="View">(03) Web Development</a></li>
+            <li><a href="#" class="side_block_item" data-cursor="View">(04) UI/UX Design</a></li>
+            <li><a href="#" class="side_block_item" data-cursor="View">(05) Digital Strategy</a></li>
+          </ul>
+        </div>
+        <div class="header_col header_col--connect">
+          <p class="side_block_title">connect</p>
+          <div class="side_block_line"></div>
+          <ul class="side_block_list">
+            <li><a href="https://www.linkedin.com/in/ivan-perun/" target="_blank" rel="noopener noreferrer" class="side_block_item side_block_link" data-cursor="Visit">LinkedIn <span class="side_block_arrow">↗</span></a></li>
+            <li><a href="https://github.com/iperun" target="_blank" rel="noopener noreferrer" class="side_block_item side_block_link" data-cursor="Visit">GitHub <span class="side_block_arrow">↗</span></a></li>
+            <li><a href="mailto:peruni101@gmail.com?subject=Portfolio%20Inquiry%20—%20Perun%20Design" class="side_block_item side_block_link" data-cursor="Email">Email <span class="side_block_arrow">↗</span></a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Pill Canvas -->
+      <section class="canvas_pill_wrap">
+        <div class="canvas_pill" data-showreel-trigger data-cursor="Watch">
+          <div class="hero_home_shader">
+            <canvas class="hero_home_canvas" aria-hidden="true"></canvas>
+          </div>
+          <div class="canvas_play_overlay" aria-hidden="true">
+            <span class="play_icon"></span>
+            <span class="play_label">Watch</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer section: Marquee + Footer -->
+      <div class="footer_section">
+        <section class="marquee_wrap" aria-hidden="true">
+          <p class="marquee_eyebrow">clients I've worked with</p>
+          <div class="side_block_line"></div>
+          <div class="marquee_track">
+            <div class="marquee_set">
+              <span class="marquee_item">The Light Walk</span>
+              <span class="marquee_item">Signal Integrity Inc.</span>
+              <span class="marquee_item">Gramercy Tech</span>
+              <span class="marquee_item">B&L Cremation Systems</span>
+              <span class="marquee_item">Bloomberg</span>
+              <span class="marquee_item">BlackRock</span>
+              <span class="marquee_item">Paramount+</span>
+              <span class="marquee_item">Walmart</span>
+              <span class="marquee_item">Indeed</span>
+              <span class="marquee_item">LinkedIn</span>
+              <span class="marquee_item">Sozo Ventures</span>
+              <span class="marquee_item">WSJ</span>
+            </div>
+            <div class="marquee_set" aria-hidden="true">
+              <span class="marquee_item">The Light Walk</span>
+              <span class="marquee_item">Signal Integrity Inc.</span>
+              <span class="marquee_item">Gramercy Tech</span>
+              <span class="marquee_item">B&L Cremation Systems</span>
+              <span class="marquee_item">Bloomberg</span>
+              <span class="marquee_item">BlackRock</span>
+              <span class="marquee_item">Paramount+</span>
+              <span class="marquee_item">Walmart</span>
+              <span class="marquee_item">Indeed</span>
+              <span class="marquee_item">LinkedIn</span>
+              <span class="marquee_item">Sozo Ventures</span>
+              <span class="marquee_item">WSJ</span>
+            </div>
+            <div class="marquee_set" aria-hidden="true">
+              <span class="marquee_item">The Light Walk</span>
+              <span class="marquee_item">Signal Integrity Inc.</span>
+              <span class="marquee_item">Gramercy Tech</span>
+              <span class="marquee_item">B&L Cremation Systems</span>
+              <span class="marquee_item">Bloomberg</span>
+              <span class="marquee_item">BlackRock</span>
+              <span class="marquee_item">Paramount+</span>
+              <span class="marquee_item">Walmart</span>
+              <span class="marquee_item">Indeed</span>
+              <span class="marquee_item">LinkedIn</span>
+              <span class="marquee_item">Sozo Ventures</span>
+              <span class="marquee_item">WSJ</span>
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+        <div class="footer_inner">
+          <div class="footer_group">
+            <p class="footer_time" data-current-time></p>
+            <p class="footer_timezone">eastern standard time</p>
+          </div>
+          <div class="footer_status">
+            <span class="status_dot"></span>
+            <span>working</span>
+            <span class="footer_global">worldwide</span>
+          </div>
+          <div class="footer_group footer_group_right">
+            <p class="footer_coords">42.1584° N, 71.1448° W</p>
+            <p class="footer_location">massachusetts</p>
+          </div>
+        </div>
+      </footer>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/hero-shader.js"></script>
+  <script src="js/main.js"></script>
 
 </body>
 </html>
