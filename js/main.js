@@ -205,6 +205,7 @@
     const page = document.getElementById('page');
     if (!page || typeof gsap === 'undefined') return;
 
+    const navbar = document.querySelector('.navbar');
     const headerMain = document.querySelector('.header_main');
     const headerContent = document.querySelector('.header_content');
     const canvasPill = document.querySelector('.canvas_pill');
@@ -223,6 +224,30 @@
     });
 
     tl.to(page, { autoAlpha: 1, duration: 1, ease: 'power2.out' });
+
+    if (navbar) {
+      const navName = navbar.querySelector('.nav-name');
+      const navPills = navbar.querySelectorAll('.nav-cta_pill');
+      if (navName) {
+        tl.from(navName, {
+          y: 12,
+          opacity: 0,
+          duration: 0.7,
+          ease: 'power2.out',
+          clearProps: 'opacity,transform'
+        }, 0.1);
+      }
+      if (navPills.length) {
+        tl.to(navPills, {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          stagger: 0.08,
+          ease: 'power2.out',
+          clearProps: 'transform'
+        }, 0.3);
+      }
+    }
 
     if (headerMain) {
       tl.from(headerMain.querySelector('.header_headline'), {

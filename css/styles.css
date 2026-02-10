@@ -193,13 +193,20 @@ em {
   font-weight: 600;
   font-size: 0.9rem;
   letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .nav-cta {
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--text-muted);
-  transition: color 0.3s ease;
+  color: var(--text);
+  transition: color 0.3s ease, background 0.3s ease, border-color 0.3s ease, opacity 0.3s ease, transform 0.3s var(--ease-out);
 }
 
 .nav-cta:hover {
@@ -208,9 +215,11 @@ em {
 
 .nav-cta_pill {
   padding: 0.5rem 1.25rem;
-  border: 1px solid var(--text-dim);
+  border: 1px solid var(--text-muted);
   border-radius: 9999px;
-  transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+  color: var(--text);
+  transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease, opacity 0.2s ease;
+  opacity: 0;
 }
 
 .nav-cta_pill:hover {
@@ -218,6 +227,19 @@ em {
   border-color: var(--text);
   color: var(--bg);
   background: var(--text);
+}
+
+.nav-cta_filled {
+  color: var(--bg);
+  background: var(--text);
+  border-color: var(--text);
+}
+
+.nav-cta_filled:hover {
+  opacity: 0.95;
+  color: var(--text);
+  background: var(--bg);
+  border-color: var(--text);
 }
 
 /* =========================================
@@ -408,12 +430,12 @@ em {
 }
 
 .marquee_eyebrow {
-  font-size: 0.65rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
   color: var(--text-dim);
-  margin: 0 0 1.25rem;
+  margin-bottom: 0.75rem;
 }
 
 .marquee_wrap .side_block_line {
@@ -749,6 +771,13 @@ em {
   }
   .navbar {
     padding: 1.25rem 1.25rem;
+  }
+  .nav-right {
+    gap: 0.5rem;
+  }
+  .nav-cta_pill {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
   }
   .footer_group_right {
     text-align: left;
