@@ -913,7 +913,7 @@ article.works_item.works_item--wide.works_item--blackrock-hero, article.works_it
 @media (max-width: 600px) {
   .works_masonry {
     /* Extra bottom padding so last items aren't hidden behind iOS Safari's bottom nav bar */
-    padding-bottom: calc(2rem + env(safe-area-inset-bottom) + 32px);
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom) + 60px);
   }
   .email-cta {
     display: none;
