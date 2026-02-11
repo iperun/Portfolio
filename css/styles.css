@@ -870,7 +870,7 @@ article.works_item.works_item--wide.works_item--blackrock-hero, article.works_it
 }
   .header_content {
     grid-template-columns: 1fr;
-    padding: 7rem var(--edge-padding) 2rem;
+    padding: 6.5rem var(--edge-padding) 2rem;
     gap: 2rem;
   }
 
@@ -912,8 +912,9 @@ article.works_item.works_item--wide.works_item--blackrock-hero, article.works_it
 
 @media (max-width: 600px) {
   .works_masonry {
-    padding-bottom: 5rem;
-}
+    /* Extra bottom padding so last items aren't hidden behind iOS Safari's bottom nav bar */
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom) + 32px);
+  }
   .email-cta {
     display: none;
   }
@@ -946,10 +947,9 @@ article.works_item.works_item--wide.works_item--blackrock-hero, article.works_it
   }
 }
 
-
+/* Single column on narrow screens to avoid column-balancing gaps (e.g. iPhone SE) */
 @media (max-width: 480px) {
   .works_masonry {
     column-count: 1;
   }
 }
-
