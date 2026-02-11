@@ -952,4 +952,7 @@ article.works_item.works_item--wide.works_item--blackrock-hero, article.works_it
   .works_masonry {
     column-count: 1;
   }
+  article.works_item.works_item--wide.works_item--blackrock-hero, article.works_item.works_item--wide.works_item--lightwalk-wide {
+    margin-top: 0;
+}
 }
