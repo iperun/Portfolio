@@ -196,7 +196,7 @@
           lightbox.classList.remove('is-open');
           lightbox.setAttribute('aria-hidden', 'true');
           lightbox.removeAttribute('aria-modal');
-          document.body.style.overflow = '';
+          document.body.style.overflow = 'auto';
           if (lenis) lenis.start();
         }
       });

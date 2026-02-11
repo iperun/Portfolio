@@ -42,7 +42,6 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
   overflow-y: hidden;
-  cursor: none;
 }
 
 body.no-cursor {
@@ -862,6 +861,10 @@ article.works_item.works_item--wide.works_item--blackrock-hero, article.works_it
 }
 
 @media (max-width: 768px) {
+  body {
+    overflow-x: auto;
+    overflow-y: auto;
+  }
   span.play_icon {
     display: none;
 }
