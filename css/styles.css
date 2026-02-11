@@ -870,7 +870,7 @@ article.works_item.works_item--wide.works_item--blackrock-hero, article.works_it
 }
   .header_content {
     grid-template-columns: 1fr;
-    padding: 8rem var(--edge-padding) 2rem;
+    padding: 6.5rem var(--edge-padding) 2rem;
     gap: 2rem;
   }
 
@@ -911,6 +911,9 @@ article.works_item.works_item--wide.works_item--blackrock-hero, article.works_it
 }
 
 @media (max-width: 600px) {
+  .works_masonry {
+    padding-bottom: 4rem;
+}
   .email-cta {
     display: none;
   }
