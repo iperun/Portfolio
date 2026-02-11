@@ -149,16 +149,36 @@
         y: 0,
         opacity: 1,
         duration: 0.6,
-        stagger: 0.06,
+        stagger: 0.08,
         ease: 'power2.out',
-        delay: 0.2
+        delay: 0.25
       });
 
+      // Play videos only when visible to avoid dual decode freeze
+      const videos = panel.querySelectorAll('video');
+      const videoObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          var v = entry.target;
+          if (entry.isIntersecting) {
+            v.play().catch(function() {});
+          } else {
+            v.pause();
+          }
+        });
+      }, { root: lightbox, rootMargin: '20%', threshold: 0.1 });
+      videos.forEach(function(v) { videoObserver.observe(v); });
+      lightbox._videoObserver = videoObserver;
     }
 
     function closeShowreel() {
       if (!isOpen) return;
       isOpen = false;
+
+      if (lightbox._videoObserver) {
+        lightbox._videoObserver.disconnect();
+        lightbox._videoObserver = null;
+      }
+      panel.querySelectorAll('video').forEach(function(v) { v.pause(); });
 
       gsap.to(panel, {
         y: -60,

@@ -557,6 +557,8 @@ em {
 
 .works_lightbox_content {
   padding: clamp(2rem, 4vh, 4rem) var(--edge-padding) clamp(4rem, 8vh, 8rem);
+  max-width: 1760px;
+    margin: 0 auto;
 }
 
 /* Masonry grid */
@@ -600,38 +602,56 @@ em {
   background: var(--border);
 }
 
-.works_item_media img {
+.works_item_media img,
+.works_item_media video {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
+}
+.works_masonry .works_item--wide .works_item_media video {
+  aspect-ratio: auto;
+}
+article.works_item.works_item--wide.works_item--short.works_item--citylabs-strip {
+  column-span: none;
+}
+
+article.works_item.works_item--wide.works_item--short.works_item--citylabs-strip video, article.works_item.works_item--wide.works_item--blackrock-hero img, article.works_item.works_item--square.works_item--signalin-square img {
+  aspect-ratio: auto;
+}
+.works_item_media video {
+  pointer-events: none;
+  aspect-ratio: 16 / 9;
+}
+
+.works_item_media img {
   aspect-ratio: 4 / 3;
 }
 
 /* Wide banner - full width */
-.works_item--wide .works_item_media img {
-  aspect-ratio: 21 / 6;
+.works_item--wide .works_item_media img,
+.works_item--wide .works_item_media video {
+  aspect-ratio: 10 / 6;
 }
 
 /* Tall - height of ~2 standard images */
 .works_item--tall .works_item_media img {
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 2 / 2.7;
 }
-
+article.works_item.works_item--extra-tall.works_item--citylabs-tall img {
+  aspect-ratio: auto;
+}
 /* Extra tall - height of ~3 standard images */
-.works_item--extra-tall .works_item_media img {
+.works_item--extra-tall .works_item_media img,
+.works_item--extra-tall .works_item_media video {
   aspect-ratio: 2 / 5;
 }
 
 /* Portrait - between standard and tall */
 .works_item--portrait .works_item_media img {
-  aspect-ratio: 3 / 4;
-}
-
-/* Square */
-.works_item--square .works_item_media img {
   aspect-ratio: 1 / 1;
 }
+
 
 /* Landscape - shorter */
 .works_item--landscape .works_item_media img {
@@ -639,12 +659,14 @@ em {
 }
 
 /* Short - wide strip */
-.works_item--short .works_item_media img {
+.works_item--short .works_item_media img,
+.works_item--short .works_item_media video {
   aspect-ratio: 16 / 5;
 }
 
 /* Wide + short combo */
-.works_item--wide.works_item--short .works_item_media img {
+.works_item--wide.works_item--short .works_item_media img,
+.works_item--wide.works_item--short .works_item_media video {
   aspect-ratio: 24 / 5;
 }
 
@@ -668,7 +690,9 @@ em {
   font-size: 1rem;
   color: var(--text);
 }
-
+article.works_item.works_item--wide.works_item--blackrock-hero, article.works_item.works_item--wide.works_item--lightwalk-wide {
+  margin-top: 2rem;
+}
 /* =========================================
    Footer
    ========================================= */
