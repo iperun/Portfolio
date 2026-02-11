@@ -945,3 +945,11 @@ article.works_item.works_item--wide.works_item--blackrock-hero, article.works_it
     align-items: flex-start;
   }
 }
+
+
+@media (max-width: 480px) {
+  .works_masonry {
+    column-count: 1;
+  }
+}
+
