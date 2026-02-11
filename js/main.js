@@ -97,20 +97,21 @@
   }
 
   // =========================================
-  // Showreel Lightbox (fade transition)
+  // Works Lightbox (slide from top)
   // =========================================
   function initShowreel() {
-    const trigger = document.querySelector('[data-showreel-trigger]');
+    const triggers = document.querySelectorAll('[data-showreel-trigger]');
     const lightbox = document.querySelector('[data-showreel-wrap]');
     const closeBtn = document.querySelector('[data-showreel-close]');
-    const video = document.querySelector('.showreel_video');
+    const panel = lightbox ? lightbox.querySelector('.works_lightbox_panel') : null;
     const lenis = window.lenis;
 
-    if (!trigger || !lightbox || !video) return;
+    if (!triggers.length || !lightbox || !panel || typeof gsap === 'undefined') return;
 
     let isOpen = false;
 
-    function openShowreel() {
+    function openShowreel(e) {
+      if (e) e.preventDefault();
       if (isOpen) return;
       isOpen = true;
 
@@ -118,37 +119,79 @@
       if (lenis) lenis.stop();
 
       lightbox.classList.add('is-open');
-      video.play();
+      lightbox.removeAttribute('aria-hidden');
+      lightbox.setAttribute('aria-modal', 'true');
+
+      gsap.fromTo(lightbox, { height: 0 }, {
+        height: '100vh',
+        duration: 0.9,
+        ease: 'power3.inOut',
+        overwrite: true
+      });
+
+      gsap.fromTo(panel, { y: -60 }, {
+        y: 0,
+        duration: 0.9,
+        ease: 'power3.inOut',
+        overwrite: true
+      });
+
+      gsap.fromTo(panel.querySelectorAll('.works_lightbox_header > *'), { y: -12, opacity: 0 }, {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        stagger: 0.05,
+        ease: 'power2.out',
+        delay: 0.15
+      });
+
+      gsap.fromTo(panel.querySelectorAll('.works_item'), { y: 24, opacity: 0 }, {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.06,
+        ease: 'power2.out',
+        delay: 0.2
+      });
+
     }
 
     function closeShowreel() {
       if (!isOpen) return;
       isOpen = false;
 
-      video.pause();
-      video.currentTime = 0;
+      gsap.to(panel, {
+        y: -60,
+        duration: 0.7,
+        ease: 'power3.inOut',
+        overwrite: true
+      });
 
-      lightbox.classList.remove('is-open');
-
-      document.body.style.overflow = '';
-      if (lenis) lenis.start();
-    }
-
-    trigger.addEventListener('click', openShowreel);
-    if (closeBtn) closeBtn.addEventListener('click', closeShowreel);
-
-    const bg = lightbox.querySelector('.showreel_bg');
-    if (bg) bg.addEventListener('click', closeShowreel);
-
-    const closeButton = lightbox.querySelector('.showreel_close');
-    if (closeButton) {
-      closeButton.addEventListener('click', function(e) {
-        e.stopPropagation();
-        closeShowreel();
+      gsap.to(lightbox, {
+        height: 0,
+        duration: 0.7,
+        ease: 'power3.inOut',
+        overwrite: true,
+        onComplete: function() {
+          lightbox.classList.remove('is-open');
+          lightbox.setAttribute('aria-hidden', 'true');
+          lightbox.removeAttribute('aria-modal');
+          document.body.style.overflow = '';
+          if (lenis) lenis.start();
+        }
       });
     }
 
-    video.addEventListener('ended', closeShowreel);
+    triggers.forEach(function(trigger) {
+      trigger.addEventListener('click', openShowreel);
+      trigger.addEventListener('keydown', function(e) {
+        if ((e.key === 'Enter' || e.key === ' ') && trigger.getAttribute('role') === 'button') {
+          e.preventDefault();
+          openShowreel(e);
+        }
+      });
+    });
+    if (closeBtn) closeBtn.addEventListener('click', closeShowreel);
 
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && isOpen) closeShowreel();
@@ -161,7 +204,10 @@
   function initLenis() {
     if (typeof Lenis === 'undefined' || typeof gsap === 'undefined') return;
 
-    const lenis = new Lenis({ duration: 0.8 });
+    const lenis = new Lenis({
+      duration: 0.8,
+      prevent: (node) => node.closest && node.closest('.works_lightbox')
+    });
     window.lenis = lenis;
 
     lenis.on('scroll', typeof ScrollTrigger !== 'undefined' ? ScrollTrigger.update : function() {});

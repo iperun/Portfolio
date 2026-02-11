@@ -58,18 +58,120 @@
   <!-- Grain Overlay -->
   <div class="grain-overlay" aria-hidden="true"></div>
 
-  <!-- Showreel Lightbox (disabled for now) -->
-  <!--
-  <div class="showreel_lightbox" data-showreel-wrap aria-hidden="true">
-    <div class="showreel_bg" data-showreel-close></div>
-    <div class="showreel_inner">
-      <video class="showreel_video" playsinline muted controls>
-        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-      </video>
-      <button type="button" class="showreel_close" aria-label="Close">Close</button>
+  <!-- Works Lightbox - slides from top, masonry grid -->
+  <div class="works_lightbox" data-showreel-wrap data-lenis-prevent aria-hidden="true">
+    <div class="works_lightbox_panel">
+      <header class="works_lightbox_header">
+        <h2 class="works_lightbox_title">Select Works</h2>
+        <button type="button" class="works_lightbox_close" data-showreel-close data-cursor="Close" aria-label="Close">
+          <span class="works_lightbox_close_icon">×</span>
+        </button>
+      </header>
+      <div class="works_lightbox_content">
+        <div class="works_masonry">
+          <article class="works_item works_item--wide">
+            <div class="works_item_media">
+              <img src="https://placehold.co/1200x400/1a1a1a/333" alt="Project" loading="lazy">
+            </div>
+            <div class="works_item_info">
+              <span class="works_item_category">Branding</span>
+              <h3 class="works_item_title">Project Alpha</h3>
+            </div>
+          </article>
+          <article class="works_item works_item--tall">
+            <div class="works_item_media">
+              <img src="https://placehold.co/400x800/1a1a1a/333" alt="Project" loading="lazy">
+            </div>
+            <div class="works_item_info">
+              <span class="works_item_category">Web Design</span>
+              <h3 class="works_item_title">Project Beta</h3>
+            </div>
+          </article>
+          <article class="works_item works_item--landscape">
+            <div class="works_item_media">
+              <img src="https://placehold.co/400x225/1a1a1a/333" alt="Project" loading="lazy">
+            </div>
+            <div class="works_item_info">
+              <span class="works_item_category">UI/UX</span>
+              <h3 class="works_item_title">Project Gamma</h3>
+            </div>
+          </article>
+          <article class="works_item works_item--square">
+            <div class="works_item_media">
+              <img src="https://placehold.co/400x400/1a1a1a/333" alt="Project" loading="lazy">
+            </div>
+            <div class="works_item_info">
+              <span class="works_item_category">Development</span>
+              <h3 class="works_item_title">Project Delta</h3>
+            </div>
+          </article>
+          <article class="works_item works_item--extra-tall">
+            <div class="works_item_media">
+              <img src="https://placehold.co/400x1000/1a1a1a/333" alt="Project" loading="lazy">
+            </div>
+            <div class="works_item_info">
+              <span class="works_item_category">Branding</span>
+              <h3 class="works_item_title">Project Epsilon</h3>
+            </div>
+          </article>
+          <article class="works_item works_item--short">
+            <div class="works_item_media">
+              <img src="https://placehold.co/400x200/1a1a1a/333" alt="Project" loading="lazy">
+            </div>
+            <div class="works_item_info">
+              <span class="works_item_category">Motion</span>
+              <h3 class="works_item_title">Project Zeta</h3>
+            </div>
+          </article>
+          <article class="works_item works_item--portrait">
+            <div class="works_item_media">
+              <img src="https://placehold.co/400x550/1a1a1a/333" alt="Project" loading="lazy">
+            </div>
+            <div class="works_item_info">
+              <span class="works_item_category">Web Development</span>
+              <h3 class="works_item_title">Project Eta</h3>
+            </div>
+          </article>
+          <article class="works_item works_item--wide works_item--short">
+            <div class="works_item_media">
+              <img src="https://placehold.co/1200x250/1a1a1a/333" alt="Project" loading="lazy">
+            </div>
+            <div class="works_item_info">
+              <span class="works_item_category">Digital Strategy</span>
+              <h3 class="works_item_title">Project Theta</h3>
+            </div>
+          </article>
+          <article class="works_item works_item--tall">
+            <div class="works_item_media">
+              <img src="https://placehold.co/400x700/1a1a1a/333" alt="Project" loading="lazy">
+            </div>
+            <div class="works_item_info">
+              <span class="works_item_category">Branding</span>
+              <h3 class="works_item_title">Project Iota</h3>
+            </div>
+          </article>
+          <article class="works_item works_item--square">
+            <div class="works_item_media">
+              <img src="https://placehold.co/400x400/1a1a1a/333" alt="Project" loading="lazy">
+            </div>
+            <div class="works_item_info">
+              <span class="works_item_category">UI/UX</span>
+              <h3 class="works_item_title">Project Kappa</h3>
+            </div>
+          </article>
+          <article class="works_item works_item--landscape">
+            <div class="works_item_media">
+              <img src="https://placehold.co/400x240/1a1a1a/333" alt="Project" loading="lazy">
+            </div>
+            <div class="works_item_info">
+              <span class="works_item_category">Web Design</span>
+              <h3 class="works_item_title">Project Lambda</h3>
+            </div>
+          </article>
+        </div>
+      </div>
     </div>
   </div>
-  -->
 
   <div class="page-wrap" id="page">
     <main>
@@ -78,8 +180,8 @@
       <nav class="navbar">
         <a href="/" class="nav-name">Perun Design</a>
         <div class="nav-right">
-          <a href="#works" class="nav-cta nav-cta_pill nav-cta_filled" data-cursor="View">Select Works</a>
-          <a href="mailto:peruni101@gmail.com?subject=Portfolio%20Inquiry%20—%20Perun%20Design" class="nav-cta nav-cta_pill" data-cursor="Email">Work with me →</a>
+          <a href="#works" class="nav-cta nav-cta_pill nav-cta_filled" data-showreel-trigger data-cursor="View">Select Works</a>
+          <a href="mailto:peruni101@gmail.com?subject=Portfolio%20Inquiry%20—%20Perun%20Design" class="nav-cta nav-cta_pill email-cta" data-cursor="Email">Work with me →</a>
         </div>
       </nav>
 
@@ -95,11 +197,11 @@
           <p class="side_block_title">services</p>
           <div class="side_block_line"></div>
           <ul class="side_block_list">
-            <li><a href="#" class="side_block_item" data-cursor="View">(01) Web Design</a></li>
-            <li><a href="#" class="side_block_item" data-cursor="View">(02) Branding</a></li>
-            <li><a href="#" class="side_block_item" data-cursor="View">(03) Web Development</a></li>
-            <li><a href="#" class="side_block_item" data-cursor="View">(04) UI/UX Design</a></li>
-            <li><a href="#" class="side_block_item" data-cursor="View">(05) Digital Strategy</a></li>
+            <li><a href="#" class="side_block_item" data-showreel-trigger data-cursor="View">(01) Web Design</a></li>
+            <li><a href="#" class="side_block_item" data-showreel-trigger data-cursor="View">(02) Branding</a></li>
+            <li><a href="#" class="side_block_item" data-showreel-trigger data-cursor="View">(03) Web Development</a></li>
+            <li><a href="#" class="side_block_item" data-showreel-trigger data-cursor="View">(04) UI/UX Design</a></li>
+            <li><a href="#" class="side_block_item" data-showreel-trigger data-cursor="View">(05) Digital Strategy</a></li>
           </ul>
         </div>
         <div class="header_col header_col--connect">
@@ -115,12 +217,12 @@
 
       <!-- Pill Canvas -->
       <section class="canvas_pill_wrap">
-        <div class="canvas_pill" data-cursor="Hold">
+        <div class="canvas_pill" data-showreel-trigger data-cursor="View" role="button" tabindex="0">
           <div class="hero_home_shader">
             <canvas class="hero_home_canvas" aria-hidden="true"></canvas>
           </div>
           <div class="canvas_play_overlay" aria-hidden="true">
-            <span class="play_icon">Hold</span>
+            <span class="play_icon">Works</span>
           </div>
         </div>
       </section>
