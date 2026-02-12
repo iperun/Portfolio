@@ -635,7 +635,7 @@ article.works_item.works_item--wide.works_item--short.works_item--citylabs-strip
 
 /* Tall - height of ~2 standard images */
 .works_item--tall .works_item_media img {
-  aspect-ratio: 2 / 2.7;
+  aspect-ratio: 1 / 1;
 }
 article.works_item.works_item--extra-tall.works_item--citylabs-tall img {
   aspect-ratio: auto;
@@ -668,7 +668,9 @@ article.works_item.works_item--extra-tall.works_item--citylabs-tall img {
 .works_item--wide.works_item--short .works_item_media video {
   aspect-ratio: 24 / 5;
 }
-
+article.works_item.works_item--wide.works_item--lightwalk-wide {
+column-span: none;
+}
 .works_item_info {
   padding: 1rem 0 0;
 }
