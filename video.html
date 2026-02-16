@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>Tradeshow | Perun Design</title>
+  <meta name="description" content="B & L Cremation Systems — Tradeshow video showcase.">
+
+  <!-- Favicons -->
+  <link rel="icon" href="images/favicon/favicon.ico" sizes="any">
+  <link rel="icon" href="images/favicon/favicon.svg" type="image/svg+xml">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #e8e6e2;
+      --sans: 'General Sans', -apple-system, sans-serif;
+      --display: 'Clash Display', -apple-system, sans-serif;
+      --edge-padding: clamp(1rem, 6vw, 6rem);
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { height: 100%; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--edge-padding);
+    }
+    .video-wrap {
+      width: auto;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #1f1d1b;
+    }
+    .video-wrap video {
+      width: 100%;
+    height: auto;
+    display: block;
+    max-height: 80vh;
+    }
+    .back-link {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #8a8782;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .back-link:hover {
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <div class="video-wrap">
+    <video src="images/blcremation/tradeshow.mp4" controls playsinline preload="metadata" aria-label="B & L Cremation Systems tradeshow video">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <a href="index.html" class="back-link">← Back to Perun Design</a>
+</body>
+</html>
